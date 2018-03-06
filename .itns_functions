@@ -1,0 +1,33 @@
+#!/bin/bash
+#Simply your ITNS wallet address
+wallet="Wallet address here"
+
+#Move the displayed information right or left
+#Higher for left , lower for right 
+trim="92"
+
+#refresh rate
+refresh=5
+
+#Subtraction from Paid
+#if for any reason you want to subtract a number from the paid amount change this variable
+sub_paid=0
+
+function coinfunction () {
+
+
+data=`curl -s https://itnspool.net/api/miner/${wallet}/stats`
+marketcap=`curl -s https://api.coinmarketcap.com/v1/ticker/intensecoin/`
+
+
+{
+echo "$(echo $data | awk -F "hash" '{print $2}' | cut -d "," -f 1 | cut -d ":" -f 2) h/s |"
+echo "`echo "$(echo $data | awk -F "amtDue" '{print $2}' | cut -d "," -f 1 | cut -d ":" -f 2) / 100000000" | bc -l | sed s/0*0$//` Due |"
+echo "`echo "$(echo $data | awk -F "amtPaid" '{print $2}' | cut -d "," -f 1 | cut -d ":" -f 2) / 100000000 - ${sub_paid}" | bc -l | sed s/0*0$//` Paid |"
+echo "$(echo $marketcap | awk -F "price_btc" '{print $2}' | awk '{print $2}' | tr -d '"' | tr -d ,) ITNS/BTC |"
+echo "$(echo $marketcap | awk -F "price_usd" '{print $2}' | awk '{print $2}' | tr -d '"' | tr -d ,) ITNS/USD"
+} | xargs
+}
+
+
+alias coin='while true;do display=`coinfunction` ; tput sc;tput cup 0 $(($(tput cols)-${trim}));echo $display;tput rc;sleep 5;done &'																						
