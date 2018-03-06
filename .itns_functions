@@ -1,6 +1,6 @@
 #!/bin/bash
 #Simply your ITNS wallet address
-wallet="Wallet address here"
+wallet="WALLET_HERE"
 
 #Move the displayed information right or left
 #Higher for left , lower for right 
