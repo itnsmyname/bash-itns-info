@@ -32,3 +32,10 @@ To uninstall copy/paste the following
 rm -rf ~/.itns_functions
 sed -i '/itns_functions/d' .bashrc
 ```
+# Donation
+If you want to offer me a virtual beer, feel free to do so!
+
+BTC: 182K9dsSyE1n8PKye8znJudGEerW7mNm85
+LTC: LPqVBp32rgdUdkesD16VXnwSXAUCgRbcGZ
+ETH: 0x25657378Fc1dC8A4065476b38DFa418E646EA7f9
+ITNS: iz4vDL8dymm76jS7dRw7VPLmBEUSwzWXtQPViGnfqE29HrdAker7e12KBmhjRd3AD6MTbuZuMy4rdcFAmGoEJPvp1vKBa8xuK
